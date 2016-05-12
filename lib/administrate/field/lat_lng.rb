@@ -10,12 +10,14 @@ module Administrate
       JS_URL  = "http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"
       CSS_URL = "http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"
       
+      # True if the :lat option has been provided, or field is called :lat
       def lat?
-        options.fetch(:lat, false)
+        options.fetch(:lat, attribute == :lat)
       end
   
+      # True if the :lng option has been provided, or field is called :lng
       def lng?
-        options.fetch(:lng, false)
+        options.fetch(:lng, attribute == :lng)
       end
       
       # Returns :lat or :lng depending on which type this is

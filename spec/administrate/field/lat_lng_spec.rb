@@ -9,6 +9,21 @@ describe Administrate::Field::LatLng do
     allow(subject).to receive(:data).and_return(value)
   end
   
+  context 'detected type: lng' do
+    let(:field) { :lat }
+    let(:options) { {} }
+    describe '#which' do
+      it { expect(subject.which).to eq(:lat) }
+    end
+  end
+  context 'detected type: lng' do
+    let(:field) { :lng }
+    let(:options) { {} }
+    describe '#which' do
+      it { expect(subject.which).to eq(:lng) }
+    end
+  end
+  
   context 'lat' do
     let(:field)   { :my_lat }
     let(:options) { {lat: true} }
