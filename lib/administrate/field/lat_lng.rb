@@ -5,7 +5,10 @@ module Administrate
   module Field
     class LatLng < Base
       class Engine < ::Rails::Engine
-      end      
+      end
+      
+      JS_URL  = "http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"
+      CSS_URL = "http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"
       
       def lat?
         options.fetch(:lat, false)

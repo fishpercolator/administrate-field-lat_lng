@@ -3,8 +3,10 @@ require 'spec_helper'
 describe Administrate::Field::LatLng do
   
   subject { described_class.new(field, 'lat_lng', :form) }
+  let(:value) { 1.2345 }
   before(:each) do
     allow(subject).to receive(:options).and_return(options)
+    allow(subject).to receive(:data).and_return(value)
   end
   
   context 'lat' do
@@ -18,6 +20,40 @@ describe Administrate::Field::LatLng do
     end
     describe '#which' do
       it { expect(subject.which).to eq(:lat) }
+    end
+    describe 'render _form' do
+      before(:each) do
+        render 'fields/lat_lng/form', field: subject, f: mock_form
+      end
+      it 'sets the variable correctly' do
+        expect(content :javascript).to include("var lat = 1.2345;")
+      end
+      it 'does not contain the map' do
+        expect(content :javascript).not_to include('<div id="latlngmap">')
+        expect(content :javascript).not_to include("var map = L.map('latlngmap')")
+      end
+      context 'no value set yet' do
+        let(:value) { nil }
+        it 'sets the variable to undefined' do
+          expect(content :javascript).to include("var lat = undefined;")
+        end
+      end
+    end
+    describe 'render _show' do
+      before(:each) do
+        render 'fields/lat_lng/show', field: subject
+      end
+      it 'contains the leaflet js and stylesheet' do
+        expect(content :javascript).to include("leaflet.js")
+        expect(content :stylesheet).to include("leaflet.css")
+      end
+      it 'sets the variable correctly' do
+        expect(content :javascript).to include("var lat = 1.2345;")
+      end
+      it 'does not contain the map' do
+        expect(content :javascript).not_to include('<div id="latlngmap">')
+        expect(content :javascript).not_to include("var map = L.map('latlngmap')")
+      end
     end
   end
   context 'lng' do
@@ -55,7 +91,42 @@ describe Administrate::Field::LatLng do
         end
       end
     end
-      
+    describe 'render _form' do
+      before(:each) do
+        render 'fields/lat_lng/form', field: subject, f: mock_form
+      end
+      it 'sets the variable correctly' do
+        expect(content :javascript).to include("var lng = 1.2345;")
+      end
+      it 'contains the map' do
+        expect(content :javascript).to include('<div id="latlngmap">')
+        expect(content :javascript).to include("var map = L.map('latlngmap')")
+      end
+      it 'contains the editing stuff' do
+        expect(content :javascript).to include("map.on('click'")
+      end
+      context 'no value set yet' do
+        let(:value) { nil }
+        it 'sets the variable to undefined' do
+          expect(content :javascript).to include("var lng = undefined;")
+        end
+      end
+    end
+    describe 'render _show' do
+      before(:each) do
+        render 'fields/lat_lng/show', field: subject
+      end
+      it 'sets the variable correctly' do
+        expect(content :javascript).to include("var lng = 1.2345;")
+      end
+      it 'contains the map' do
+        expect(content :javascript).to include('<div id="latlngmap">')
+        expect(content :javascript).to include("var map = L.map('latlngmap')")
+      end
+      it 'does not contain the editing stuff' do
+        expect(content :javascript).not_to include("map.on('click'")
+      end
+    end
   end
 
 end
