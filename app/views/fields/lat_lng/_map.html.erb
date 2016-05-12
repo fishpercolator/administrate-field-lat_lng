@@ -6,8 +6,6 @@
     // Attach a leaflet.js map to the div above
     var map = L.map('latlngmap');
     var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      minZoom: 10,
-      maxZoom: 18,
       attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
     });
     map.addLayer(osm);
