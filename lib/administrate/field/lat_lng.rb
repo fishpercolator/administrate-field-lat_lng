@@ -7,8 +7,8 @@ module Administrate
       class Engine < ::Rails::Engine
       end
       
-      JS_URL  = "http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"
-      CSS_URL = "http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"
+      JS_URL  = "//cdnjs.cloudflare.com/leaflet/v0.7.7/leaflet.js"
+      CSS_URL = "//cdnjs.cloudflare.com/leaflet/v0.7.7/leaflet.css"
       
       # True if the :lat option has been provided, or field is called :lat
       def lat?

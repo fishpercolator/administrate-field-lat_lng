@@ -54,7 +54,7 @@ Additional options that are available:
 
 ## Usage notes
 
-This gem depends on being able to access `cdn.leafletjs.com` for the Leaflet JS and CSS. Let me know if you want this to change and be based on the asset pipeline.
+This gem depends on being able to access `cdnjs.cloudflare.com` for the Leaflet JS and CSS. Let me know if you want this to change and be based on the asset pipeline.
 
 Currently you can only have one pair of lat/lng per model type. Supporting multiple pairs would not be hard, so let me know if you need that functionality.
 
