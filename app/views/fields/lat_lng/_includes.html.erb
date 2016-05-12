@@ -1,0 +1,23 @@
+<%= content_for :stylesheet do %>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <style text="text/css">
+  .field-unit {
+    flex-flow: row wrap;
+  }
+  .map-container {
+    clear: both;
+    width: 100%;
+  }
+  #latlngmap {
+    margin-top: 1.5em;
+    width: 500px;
+    height: 500px;
+  }
+  .field-unit #latlngmap {
+    margin-left: 17.0596086%;
+  }
+  </style>
+<% end %> 
+<%= content_for :javascript do %>
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<% end %>

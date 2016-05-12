@@ -1,0 +1,9 @@
+<%= render 'fields/lat_lng/includes' if field.lng? %>
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field field.attribute, class: "latlng-#{field.which}" %>
+</div>
+<%= render 'fields/lat_lng/var', field: field %>
+<%= render 'fields/lat_lng/map', edit: true, field: field if field.lng? %>

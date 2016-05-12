@@ -1,0 +1,46 @@
+<div class="map-container">
+  <div id="latlngmap"></div>
+</div>
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    // Attach a leaflet.js map to the div above
+    var map = L.map('latlngmap');
+    var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      minZoom: 10,
+      maxZoom: 18,
+      attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+    });
+    map.addLayer(osm);
+    
+    // Get the centre lat/lng from the field or the initial default if the field
+    // hasn't been set yet
+    var latlng = [];
+    if (lng === undefined) {
+      latlng = <%= field.initial.to_json %>;
+    } else {
+      latlng = [lat, lng];
+    }
+    map.setView(latlng, <%= field.zoom %>);
+    
+    // Add a marker if the field has been set already
+    var marker;
+    if (lng !== undefined) {
+      marker = L.marker(latlng);
+      marker.addTo(map);
+    }
+    <% if edit %>
+    // In edit mode, move the marker and update the fields when a user clicks
+    // inside the map
+    map.on('click', function (e) {
+      if (marker === undefined) {
+        marker = L.marker(e.latlng);
+        marker.addTo(map);
+      } else {
+        marker.setLatLng(e.latlng);
+      }
+      $('.latlng-lat').val(e.latlng.lat);
+      $('.latlng-lng').val(e.latlng.lng);
+    });
+    <% end %>
+  </script>
+<% end %>
