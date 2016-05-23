@@ -17,12 +17,6 @@ And then execute:
 
     $ bundle
 
-**Note for Administrate 0.2.0 users**: This gem depends on Administrate's `content_for :stylesheet` which, at the time of writing, has not yet been released. If 0.2.0 is still the latest version, you'll want to update your Gemfile to point at the bleeding-edge of Administrate:
-
-```ruby
-gem 'administrate', '~> 0.2.0', github: 'thoughtbot/administrate'
-```
-
 ## Usage
 
 In your dashboard's `ATRRIBUTE_TYPES`, use the type `Field::LatLng` with options:
