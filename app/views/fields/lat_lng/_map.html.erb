@@ -23,7 +23,9 @@
     // Add a marker if the field has been set already
     var marker;
     if (lng !== undefined) {
-      marker = L.marker(latlng);
+      var icon = new L.Icon.Default();
+      var options = { icon: icon };
+      marker = L.marker(latlng, options);
       marker.addTo(map);
     }
     <% if edit %>
