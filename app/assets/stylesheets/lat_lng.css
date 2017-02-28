@@ -1,0 +1,20 @@
+/**
+ * Include Leaflet's base css
+ *= require leaflet
+ */
+
+ .field-unit {
+   flex-flow: row wrap;
+ }
+ .map-container {
+   clear: both;
+   width: 100%;
+ }
+ #latlngmap {
+   margin-top: 1.5em;
+   width: 500px;
+   height: 500px;
+ }
+ .field-unit #latlngmap {
+   margin-left: 17.0596086%;
+ }

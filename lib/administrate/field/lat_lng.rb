@@ -1,15 +1,18 @@
 require 'administrate/field/base'
+require 'leaflet-rails'
 require 'rails'
 
 module Administrate
   module Field
     class LatLng < Base
       class Engine < ::Rails::Engine
+        config.assets.precompile << %w(lat_lng.js lat_lng.css) if config.respond_to? :assets
+        if defined?(Administrate::Engine)
+          Administrate::Engine.add_javascript 'lat_lng.js'
+          Administrate::Engine.add_stylesheet 'lat_lng.css'
+        end
       end
-      
-      JS_URL  = "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"
-      CSS_URL = "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
-      
+
       # True if the :lat option has been provided, or field is called :lat
       def lat?
         options.fetch(:lat, attribute == :lat)

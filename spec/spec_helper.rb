@@ -1,3 +1,8 @@
+# Monkeypatch leaflet-rails until https://github.com/axyjo/leaflet-rails/pull/66 is resolved
+module Leaflet
+  require 'rails'
+end
+
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'administrate/field/lat_lng'
 require 'erubis'
