@@ -1,4 +1,5 @@
 require 'administrate/field/base'
+require 'leaflet-rails'
 require 'rails'
 
 module Administrate
