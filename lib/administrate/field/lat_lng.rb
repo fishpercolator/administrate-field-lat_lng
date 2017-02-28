@@ -12,10 +12,7 @@ module Administrate
           Administrate::Engine.add_stylesheet 'lat_lng.css'
         end
       end
-      
-      JS_URL  = "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"
-      CSS_URL = "//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
-      
+
       # True if the :lat option has been provided, or field is called :lat
       def lat?
         options.fetch(:lat, attribute == :lat)
