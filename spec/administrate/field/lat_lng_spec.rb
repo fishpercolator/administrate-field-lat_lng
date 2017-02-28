@@ -58,10 +58,6 @@ describe Administrate::Field::LatLng do
       before(:each) do
         render 'fields/lat_lng/show', field: subject
       end
-      it 'contains the leaflet js and stylesheet' do
-        expect(content :javascript).to include("leaflet.js")
-        expect(content :stylesheet).to include("leaflet.css")
-      end
       it 'sets the variable correctly' do
         expect(content :javascript).to include("var lat = 1.2345;")
       end
