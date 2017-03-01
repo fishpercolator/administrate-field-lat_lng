@@ -45,6 +45,8 @@ Additional options that are available:
 
 * `initial`: Set to an array like `[53.8003,-1.5519]`. Will cause the center of the map to be this point if the lat/lng have not yet been set (e.g. for new records). Defaults to Leeds, UK (because that's where the author is from).
 * `zoom`: Set the default zoom level for maps drawn (defaults to 11).
+* `search`: `true` (default) or `false`. Enable location search. Requires `google_api_key` option too.
+* `google_api_key`: A [key for the Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/get-api-key). Required for location search to work.
 
 ## Usage notes
 
@@ -59,4 +61,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fishpe
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

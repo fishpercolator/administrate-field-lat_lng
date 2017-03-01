@@ -2,6 +2,7 @@
   <div id="latlngmap"></div>
 </div>
 <% content_for :javascript do %>
+  <%= content_tag(:script, '', src: "https://maps.googleapis.com/maps/api/js?key=#{field.google_api_key}&libraries=places") if field.search? %>
   <script type="text/javascript">
     // Attach a leaflet.js map to the div above
     var map = L.map('latlngmap');
@@ -9,7 +10,7 @@
       attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
     });
     map.addLayer(osm);
-    
+
     // Get the centre lat/lng from the field or the initial default if the field
     // hasn't been set yet
     var latlng = [];
@@ -19,7 +20,7 @@
       latlng = [lat, lng];
     }
     map.setView(latlng, <%= field.zoom %>);
-    
+
     // Add a marker if the field has been set already
     var marker;
     if (lng !== undefined) {
@@ -41,6 +42,10 @@
       $('.latlng-lat').val(e.latlng.lat);
       $('.latlng-lng').val(e.latlng.lng);
     });
+    <% end %>
+
+    <% if field.search? %>
+      new L.Control.GPlaceAutocomplete().addTo(map);
     <% end %>
   </script>
 <% end %>
