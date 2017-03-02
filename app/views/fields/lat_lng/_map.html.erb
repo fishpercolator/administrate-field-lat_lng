@@ -11,6 +11,23 @@
     });
     map.addLayer(osm);
 
+    var createMarker = function(latlng) {
+      var icon = new L.Icon.Default();
+      var options = { icon: icon };
+      marker = L.marker(latlng, options);
+      marker.addTo(map);
+    };
+
+    var setMarker = function (latlng) {
+      if (marker === undefined) {
+        createMarker(latlng);
+      } else {
+        marker.setLatLng(latlng);
+      }
+      $('.latlng-lat').val(latlng.lat);
+      $('.latlng-lng').val(latlng.lng);
+    };
+
     // Get the centre lat/lng from the field or the initial default if the field
     // hasn't been set yet
     var latlng = [];
@@ -24,28 +41,33 @@
     // Add a marker if the field has been set already
     var marker;
     if (lng !== undefined) {
-      var icon = new L.Icon.Default();
-      var options = { icon: icon };
-      marker = L.marker(latlng, options);
-      marker.addTo(map);
+      createMarker(latlng);
     }
     <% if edit %>
     // In edit mode, move the marker and update the fields when a user clicks
     // inside the map
     map.on('click', function (e) {
-      if (marker === undefined) {
-        marker = L.marker(e.latlng);
-        marker.addTo(map);
-      } else {
-        marker.setLatLng(e.latlng);
-      }
-      $('.latlng-lat').val(e.latlng.lat);
-      $('.latlng-lng').val(e.latlng.lng);
+      setMarker(e.latlng);
     });
     <% end %>
 
     <% if field.search? %>
-      new L.Control.GPlaceAutocomplete().addTo(map);
+    new L.Control.GPlaceAutocomplete({
+        callback: function (place) {
+          map.panTo([
+              place.geometry.location.lat(),
+              place.geometry.location.lng()
+          ]);
+
+          <% if edit %>
+          setMarker({
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+          });
+          <% end %>
+        },
+      })
+      .addTo(map);
     <% end %>
   </script>
 <% end %>
