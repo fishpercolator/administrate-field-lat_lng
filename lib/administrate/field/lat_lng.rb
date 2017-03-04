@@ -6,16 +6,18 @@ module Administrate
   module Field
     class LatLng < Base
       class Engine < ::Rails::Engine
-        if config.respond_to? :assets
-          config.assets.precompile << %w(lat_lng.js lat_lng.css)
-          config.assets.precompile << %w(leaflet-gplaces-autocomplete-0.0.8.css leaflet-gplaces-autocomplete-0.0.8.js)
-        end
+        initializer 'administrate-field-lat_lng.add_assets' do |app|
+          if app.config.respond_to? :assets
+            app.config.assets.precompile << %w(lat_lng.js lat_lng.css)
+            app.config.assets.precompile << %w(leaflet-gplaces-autocomplete-0.0.8.css leaflet-gplaces-autocomplete-0.0.8.js)
+          end
 
-        if defined?(Administrate::Engine)
-          Administrate::Engine.add_javascript 'lat_lng.js'
-          Administrate::Engine.add_stylesheet 'lat_lng.css'
-          Administrate::Engine.add_javascript 'leaflet-gplaces-autocomplete-0.0.8.js'
-          Administrate::Engine.add_stylesheet 'leaflet-gplaces-autocomplete-0.0.8.css'
+          if defined?(Administrate::Engine)
+            Administrate::Engine.add_javascript 'lat_lng.js'
+            Administrate::Engine.add_stylesheet 'lat_lng.css'
+            Administrate::Engine.add_javascript 'leaflet-gplaces-autocomplete-0.0.8.js'
+            Administrate::Engine.add_stylesheet 'leaflet-gplaces-autocomplete-0.0.8.css'
+          end
         end
       end
 
