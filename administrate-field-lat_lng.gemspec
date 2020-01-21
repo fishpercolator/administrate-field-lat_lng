@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "administrate-field-lat_lng"
-  spec.version       = "1.9.0"
-  spec.authors       = ["Rich Daley"]
-  spec.email         = ["rich@fishpercolator.co.uk"]
+  spec.version       = "1.10.0"
+  spec.authors       = ["Quinn Daley"]
+  spec.email         = ["quinn@fishpercolator.co.uk"]
 
   spec.summary       = %q{Administrate field for latitude/longitude}
   spec.description   = %q{Adds an Administrate::Field::LatLng for viewing & editing latitude/longitude fields on a map}
