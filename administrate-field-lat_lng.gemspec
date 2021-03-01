@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "administrate-field-lat_lng"
-  spec.version       = "1.12.0"
+  spec.version       = "1.13.0"
   spec.authors       = ["Quinn Daley"]
   spec.email         = ["quinn@fishpercolator.co.uk"]
 
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'administrate', '>= 0.3', '< 0.15'
+  spec.add_dependency 'administrate', '>= 0.3', '< 0.16'
   spec.add_dependency 'leaflet-rails', '~> 1.0'
 
   spec.add_development_dependency "bundler", "~> 1.11"
