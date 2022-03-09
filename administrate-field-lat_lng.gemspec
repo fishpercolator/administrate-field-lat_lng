@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "administrate-field-lat_lng"
-  spec.version       = "1.15.0"
+  spec.version       = "1.16.0"
   spec.authors       = ["Quinn Daley"]
   spec.email         = ["quinn@fishpercolator.co.uk"]
 
